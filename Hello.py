@@ -20,30 +20,26 @@ LOGGER = get_logger(__name__)
 
 def run():
     st.set_page_config(
-        page_title="Hello",
+        page_title="Introduction",
         page_icon="👋",
     )
 
-    st.write("# Welcome to Streamlit! 👋")
-
-    st.sidebar.success("Select a demo above.")
+    st.write("## Selamat Datang! 👋👋👋👋👋👋👋👋👋")
 
     st.markdown(
         """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
+        Project ini merupakan hasil dari penerapan model 
+        yang saya buat dengan menggunakan algoritma Apriori, yang merupakan salah satu metode data mining 
+        untuk menemukan asosiasi antara item-item dalam sebuah transaksi. 
+        Tujuan Pembuatannya adalah untuk mengetahui informasi yang berguna dari setiap pembelian customer, 
+        seperti item yang **sering** dibeli bersamaan, item yang paling diminati. 
+        Dengan mengetahui informasi ini,
+        saya dapat memberikan rekomendasi produk yang lebih tepat dan meningkatkan loyalitas dan **kepuasan customer**.. Dengan hasil tersebut kita bisa mengetahui:
+        - Mengetahui barang yang sering dibeli oleh pelanggan
+        - Menawarkan paket rekomendasi berdasarkan apa yang dia beli
+
+        Project ini dibuat dengan ❤ by Michael Surya
+        """
     )
 
 
