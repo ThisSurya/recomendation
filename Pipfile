@@ -11,6 +11,8 @@ pydeck = "*"
 streamlit = "*"
 apyori = "*"
 mlxtend = "*"
+seaborn = "*"
+plotly = "*"
 
 [dev-packages]
 

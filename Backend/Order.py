@@ -17,7 +17,16 @@ def BestSeller(frequent_apriori):
 
     return list_best
 
+def ListProduk(data_cook, key):
+    data_cook = data_cook.loc[data_cook['KELASPRODUK'] == key]
+    data_cook = data_cook['PRODUK GROUP'].unique()
 
+    if len(data_cook) >= 5:
+        data_cook = data_cook[:4]
+
+    return data_cook
+
+# kemungkinan ngga dipake
 def ClassProduct(data, key):
 
     data = data.loc[data['KODEPRODUK'] == key]
@@ -30,22 +39,39 @@ def Recomendation_Best(data, key):
     data = data['KODEPRODUK'].unique()
     return data
 
+# kemungkinan ngga dipake
 def PickProduct(frequent):
     product = frequent['itemsets'].unique()
     product = list(product)
 
     if len(product) >= 10:
-        product = product
+        product = product[:15]
     product = pd.DataFrame(product)
     return product
 
-def Recomendation(association_result, key):
-    key = [key]
-    key = frozenset(key)
+def Recomendation(result, key = None):
 
-    association_result = association_result.loc[association_result['antecedents'] == key]
-    list_recomendation = association_result['consequents']
+    association_result = result.loc[result['antecedents'] == key]
+    association_result = association_result.sort_values(by='confidence', ascending=False)
+    association_result = association_result.reset_index(drop=True)
+    
+    if len(association_result) >= 5:
+        association_result = association_result.head(4)
+    # association_result = association_result[(association_result['support'] >= 0.1) | (association_result['confidence'] >= 0.1)]
+    product = list(association_result['consequents'])
+    return product
+def Decision(assoc_result, antecedent_key, consequent_key):
+    antecedent_key = [antecedent_key]
+    consequent_key = [consequent_key]
 
+    antecedent_key = frozenset(antecedent_key)
+    consequent_key = frozenset(consequent_key)
 
-    list_recomendation = list(list_recomendation)
-    return list_recomendation
+    Decision_result = assoc_result[(assoc_result['antecedents'] == antecedent_key) & (assoc_result['consequents'] == consequent_key)]
+
+    Decision_result = (Decision_result.explode('antecedents').reset_index(drop=True).explode('consequents').reset_index(drop=True))
+    Decision_result = Decision_result[['antecedents', 'consequents', 'support', 'confidence']]
+    Decision_result = Decision_result.drop_duplicates(subset=['antecedents', 'consequents'])
+
+    Decision_result = Decision_result.reset_index(drop=True)
+    return Decision_result

@@ -26,7 +26,7 @@ def Documentation():
             pembelian dari customer yang loyal dan puas. :)
         """
     )
-    st.write('# Panel Analysis')
+    st.write('# Arti dari setiap input: ')
     st.write('Customer, Input pelanggan yang ingin dilihat pola pembeliannya')
     st.image(documentation_5, caption='Panel Customer')
 
